@@ -21,10 +21,18 @@ const __dirname=path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
+// app.use(cors({
+//     origin:"http://localhost:5173",
+//     credentials:true,
+// }))
 app.use(cors({
-    origin:"http://localhost:5173",
-    credentials:true,
-}))
+  origin: [
+    "http://localhost:5173",
+    "https://chat-app-4-mz00.onrender.com" // frontend from backend build
+  ],
+  credentials: true,
+}));
+
 app.use("/api/auth",authRoute);
 app.use("/api/messages",messageRoute);
 
